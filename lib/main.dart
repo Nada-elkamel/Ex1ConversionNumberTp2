@@ -19,13 +19,12 @@ final TextStyle labelStyle = TextStyle(
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'Number to words - Mehdi Ayed DSI31'),
+      home: const MyHomePage(title: 'Number to words '),
     );
   }
 }
@@ -54,12 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,10 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(height: 30),
               Neonpen(
                 text: Text(
-                  'Tp 2 : Convert Number to Text',
+                  'Workshop 2',
                   style: labelStyle,
                 ),
-                color: Color.fromARGB(255, 94, 151, 144),
+                color: Color.fromARGB(255, 222, 155, 230),
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                 opacity: 0.3,
                 emphasisWidth: 10,
@@ -98,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           width: 3,
-                          color: Color.fromARGB(255, 94, 151, 144),
+                          color: Color.fromARGB(255, 112, 150, 191),
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     enabledBorder: OutlineInputBorder(
@@ -129,37 +122,49 @@ class _MyHomePageState extends State<MyHomePage> {
                     displayName = '';
                     s1 = numberForm.toString().split('.')[0];
                     s2 = numberForm.toStringAsFixed(2).split('.')[1];
+                    // displayName =
+                    //     NumberToWordsEnglish.convert(int.parse(s1)) + '';
+                    // displayName +=
+                    //    NumberToWordsEnglish.convert(int.parse(s2));
                     displayName =
-                        NumberToWordsEnglish.convert(int.parse(s1)) + '';
+                        '${NumberToWordsEnglish.convert(int.parse(s1))} dollars ';
                     displayName +=
-                        NumberToWordsEnglish.convert(int.parse(s2)) + '';
+                        '${NumberToWordsEnglish.convert(int.parse(s2))} ';
                   });
                 },
                 child: Text("convert to english"),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.purple,
+                  backgroundColor: Colors.purple,
                 ),
               ),
-              Text(
-                displayName,
-                style: labelStyle,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    s3 = '';
-                    s4 = '';
-                    displayName = '';
-                    s3 = numberForm.toString().split('.')[0];
-                    s4 = numberForm.toStringAsFixed(2).split('.')[1];
-                    displayName = Tafqeet.convert(s3) + ' ';
-                    displayName += Tafqeet.convert(s4) + '';
-                  });
-                },
-                child: Text("convert to arabic"),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.yellow.shade800,
-                ),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        s3 = '';
+                        s4 = '';
+                        displayName = '';
+                        s3 = numberForm.toString().split('.')[0];
+                        s4 = numberForm.toStringAsFixed(2).split('.')[1];
+                        // displayName = Tafqeet.convert(s3) + ' ';
+                        // displayName += Tafqeet.convert(s4) + '';
+                        displayName = '${Tafqeet.convert(s3)} dinar ';
+                        displayName += '${Tafqeet.convert(s4)} ';
+                      });
+                    },
+                    child: Text("convert to arabic"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.yellow.shade800,
+                    ),
+                  ),
+                  SizedBox(
+                      height: 10), // Add spacing between the button and text
+                  Text(
+                    displayName,
+                    style: labelStyle,
+                  ),
+                ],
               ),
             ],
           ),
